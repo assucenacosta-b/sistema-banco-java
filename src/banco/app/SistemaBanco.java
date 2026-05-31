@@ -9,13 +9,12 @@ public class SistemaBanco {
 	
 
 		banco = new BancoService();
-		
+	
 		
 		int opcao;
 		
 		do {
-			banco.menu();
-			 String entrada = JOptionPane.showInputDialog(null, banco.menu(), "Menu Principal",JOptionPane.QUESTION_MESSAGE);
+			String entrada = JOptionPane.showInputDialog(null, banco.menu(), "Menu Principal",JOptionPane.QUESTION_MESSAGE);
 
 		     if (entrada == null) {
 		    	 opcao = 0;

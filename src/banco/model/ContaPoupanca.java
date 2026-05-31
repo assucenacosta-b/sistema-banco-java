@@ -22,17 +22,27 @@ public class ContaPoupanca extends ContaBancaria {
 	
 	@Override
 	public void gerarExtrato() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("--- Extrato Conta Poupanca ---\n");
-		sb.append("Titular: ").append(getTitular().getNome()).append("\n");
-		sb.append("Numero da conta: ").append(getNumeroConta()).append("\n");
-		sb.append("Saldo: ").append(getSaldo()).append("\n");
-		sb.append("Taxa de rendimento mensal: ").append(getTaxaMensal()).append("\n");
-		sb.append("Rendimento estimado do próximo mês: ").append(String.format("%.2f", calcularRendimento())).append("\n");
-		sb.append("Historico: ").append(getHistorico()).append("\n");
-		JOptionPane.showMessageDialog(null, sb.toString());
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("--- Extrato Conta Poupança ---\n");
+	    sb.append("Titular: ").append(getTitular().getNome()).append("\n");
+	    sb.append("Número da Conta: ").append(getNumeroConta()).append("\n");
+	    sb.append("Saldo: R$ ").append(String.format("%.2f", getSaldo())).append("\n");
+	    sb.append("Taxa de Rendimento Mensal: ").append(String.format("%.2f", getTaxaMensal() * 100)).append("%\n");
+	    sb.append("Rendimento Estimado Próximo Mês: R$ ").append(String.format("%.2f", calcularRendimento())).append("\n\n");
+	    
+	    sb.append("--- Histórico de Transações ---\n");
+	    if (getHistorico().isEmpty()) {
+	        sb.append("Nenhuma transação realizada.\n");
+	    } else {
+	        for (String t : getHistorico()) {
+	            sb.append(t).append("\n");
+	        }
+	    }
+	    
+	    JOptionPane.showMessageDialog(null, sb.toString());
 	}
 
+	
 	public double getTaxaMensal() {
 		return taxaMensal;
 	}

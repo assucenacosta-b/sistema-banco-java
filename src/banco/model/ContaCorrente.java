@@ -36,24 +36,29 @@ public class ContaCorrente extends ContaBancaria{
     }
 
 	
-	@Override
-	public void gerarExtrato() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("--- Extrato Conta Corrente ---\n");
-		sb.append("Titular: ").append(getTitular().getNome()).append("\n");
-		sb.append("Numero da conta: ").append(getNumeroConta()).append("\n");
-		sb.append("Saldo: ").append(getSaldo()).append("\n");
-		sb.append("Limte do Cheque Especial: ").append(getLimiteChequEspecial()).append("\n");
-		sb.append("Historico: ").append(getHistorico()).append("\n");
-	    JOptionPane.showMessageDialog(null, sb.toString());
-	    
-	    sb.append("Saldo: R$ ").append(String.format("%.2f", getSaldo())).append("\n");
-	    for (String t : getHistorico()) {
-	        sb.append(t).append("\n");
-	    }
-	}
+  
+    @Override
+    public void gerarExtrato() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("--- Extrato Conta Corrente ---\n");
+        sb.append("Titular: ").append(getTitular().getNome()).append("\n");
+        sb.append("Número da Conta: ").append(getNumeroConta()).append("\n");
+        sb.append("Saldo: R$ ").append(String.format("%.2f", getSaldo())).append("\n");
+        sb.append("Limite Cheque Especial: R$ ").append(String.format("%.2f", getLimiteChequEspecial())).append("\n");
+        sb.append("Limite total disponível: R$ ").append(String.format("%.2f", getSaldo() + getLimiteChequEspecial())).append("\n\n");
+        
+        sb.append("--- Histórico de Transações ---\n");
+        if (getHistorico().isEmpty()) {
+            sb.append("Nenhuma transação realizada.\n");
+        } else {
+            for (String t : getHistorico()) {
+                sb.append(t).append("\n");
+            }
+        }
+        JOptionPane.showMessageDialog(null, sb.toString());
+    }
 
-
+    
 	public double getLimiteChequEspecial() {
 		return limiteChequEspecial;
 	}

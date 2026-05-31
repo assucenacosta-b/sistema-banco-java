@@ -64,22 +64,27 @@ public class BancoService {
 		        "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 		}
 	
-	public void listarTodasAsContas() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("=== Lista de Contas ===\n\n");
-	    for (ContaCorrente cc : contasCorrente) {
-	        sb.append(cc.getNumeroConta()).append("\n");
-	        sb.append(cc.getTitular().getNome()).append(" R$ ");
-	        sb.append(cc.getSaldo()).append("\n");
-	    }
-	    for (ContaPoupanca cp : contasPoupanca) {
-	        sb.append(cp.getNumeroConta()).append("\n");
-	        sb.append(cp.getTitular().getNome()).append(" R$ ");
-	        sb.append(cp.getSaldo()).append("\n");
-	    }
-	    JOptionPane.showMessageDialog(null, sb.toString());
-	}
-
+		public void listarTodasAsContas() {
+		    StringBuilder sb = new StringBuilder();
+		    sb.append("=== Lista de Contas ===\n\n");
+		    
+		    for (ContaCorrente cc : contasCorrente) {
+		        sb.append("Conta: ").append(cc.getNumeroConta()).append("\n");
+		        sb.append("Titular: ").append(cc.getTitular().getNome())
+		          .append(" Saldo: R$ ").append(String.format("%.2f", cc.getSaldo())).append("\n\n");
+		    }
+		    for (ContaPoupanca cp : contasPoupanca) {
+		        sb.append("Conta: ").append(cp.getNumeroConta()).append("\n");
+		        sb.append("Titular: ").append(cp.getTitular().getNome())
+		          .append("Saldo: R$ ").append(String.format("%.2f", cp.getSaldo())).append("\n\n");
+		    }
+		    
+		    if (contasCorrente.isEmpty() && contasPoupanca.isEmpty()) {
+		        sb.append("Nenhuma conta cadastrada");
+		    }
+		    
+		    JOptionPane.showMessageDialog(null, sb.toString());
+		}
 	public double calcularPatrimonioTotal() {
 		double total = 0;
 	    for (ContaCorrente cc : contasCorrente) total += cc.getSaldo();
