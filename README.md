@@ -1,4 +1,4 @@
-# Sistema de Gerenciamento de Contas Bancárias em Java
+# Sistema de Gerenciamento de Contas Bancárias 
 
 ### Descrição
 Sistema de gerenciamento bancário desenvolvido em Java com interface via JOptionPane. Permite cadastrar contas correntes e poupanças, realizar depósitos, saques, consultar saldos, exibir extratos e histórico de transações, além de gerar relatórios gerais do banco.
@@ -133,4 +133,3 @@ Cliente          BancoService          SistemaBanco
 Assucena Costa B. dos Reis
 
 Informatica 2° Período  
-*Projeto desenvolvido para fins acadêmicos*
